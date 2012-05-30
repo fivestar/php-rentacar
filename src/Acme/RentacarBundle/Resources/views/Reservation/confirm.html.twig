@@ -1,0 +1,73 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title '予約内容確認' %}
+
+{% block content %}
+<h3>請求金額</h3>
+
+<div class="row">
+  <div class="span6">
+    {% include "AcmeRentacarBundle:Reservation:_amount_table.html.twig" %}
+  </div>
+</div>
+
+<h3>入力内容確認</h3>
+
+<fieldset>
+  <legend>出着情報</legend>
+
+  <div class="control-group">
+    <label class="control-label">出発</label>
+    <div class="controls">
+      {{ reservation.departureAt|date('Y/m/d H:i') }}
+      {{ reservation.departureLocation }}営業所
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">返却</label>
+    <div class="controls">
+      {{ reservation.returnAt|date('Y/m/d H:i') }}
+      {{ reservation.returnLocation }}営業所
+    </div>
+  </div>
+  <div>
+    <a href="{{ path('reservation_new') }}" class="btn">出着情報を変更する</a>
+  </div>
+</fieldset>
+<br>
+
+<fieldset>
+  <legend>車種</legend>
+  {% include "AcmeRentacarBundle::_car.html.twig" with {'carClass': reservation.carClass} %}
+  <div>
+    <a href="{{ path('reservation_car') }}" class="btn">車種を変更する</a>
+  </div>
+</fieldset>
+<br>
+
+<fieldset>
+  <legend>オプション</legend>
+  <div class="control-group">
+    <label class="control-label">免責補償</label>
+    <div class="controls">
+      {% if reservation.useInsurance %}あり{% else %}なし{% endif %}
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">備考</label>
+    <div class="controls">
+      {{ reservation.note }}
+    </div>
+  </div>
+  <div>
+    <a href="{{ path('reservation_option') }}" class="btn">オプションを変更する</a>
+  </div>
+</fieldset>
+<br>
+
+<form action="{{ path('reservation_confirm') }}" method="post">
+  <div class="form-actions">
+    <input type="submit" class="btn btn-primary btn-large" value="予約を確定する">
+  </div>
+</form>
+{% endblock %}

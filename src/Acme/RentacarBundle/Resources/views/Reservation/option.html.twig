@@ -1,0 +1,31 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title '予約/オプション選択' %}
+{% set menu = 'reservation' %}
+
+{% block content %}
+{% include "AcmeRentacarBundle::_car.html.twig" with {'carClass': reservation.carClass} %}
+
+<form action="{{ path('reservation_option') }}" method="post">
+  {{ form_errors(form) }}
+  <fieldset>
+    <legend>オプション</legend>
+    <div class="control-group">
+      <label class="control-label">免責補償</label>
+      <div class="controls">
+        <label class="checkbox">{{ form_widget(form.useInsurance) }} 免責補償をつける</label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">備考 (任意)</label>
+      <div class="controls">
+        {{ form_widget(form.note, {'attr': {'class': 'input-xlarge', 'rows': 5} }) }}
+      </div>
+    </div>
+    {{ form_rest(form) }}
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" value="予約内容を確認する">
+    </div>
+  </fieldset>
+</form>
+{% endblock %}

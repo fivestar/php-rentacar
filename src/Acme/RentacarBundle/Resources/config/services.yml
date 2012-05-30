@@ -1,0 +1,18 @@
+services:
+    rentacar.reservation_service:
+        class: Acme\RentacarBundle\Service\ReservationService
+        arguments:
+            - @doctrine
+            - @rentacar.mail_service
+
+    rentacar.user_service:
+        class: Acme\RentacarBundle\Service\UserService
+        arguments:
+            - @doctrine
+            - @rentacar.mail_service
+
+    rentacar.mail_service:
+        class: Acme\RentacarBundle\Service\MailService
+        arguments:
+            - @mailer
+            - @twig

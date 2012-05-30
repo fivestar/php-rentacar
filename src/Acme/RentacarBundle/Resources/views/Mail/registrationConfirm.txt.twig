@@ -1,0 +1,9 @@
+{%- autoescape false -%}
+仮登録が完了しました。
+
+下記のURLへアクセスすると登録が完了します
+{{ url('user_activate', {'key': user.activationKey}) }}
+
+--
+PHPレンタカー
+{%- endautoescape -%}

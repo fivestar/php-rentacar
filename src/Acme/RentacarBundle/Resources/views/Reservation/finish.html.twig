@@ -1,0 +1,12 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title %}予約完了{% endblock %}
+
+{% block content %}
+<div class="alert alert-success">
+  <p>予約が完了しました。登録しているメールアドレス宛てにメールを送信しましたのでご確認ください。</p>
+  <div>
+    <a href="{{ path('homepage') }}" class="btn">トップへ戻る</a>
+  </div>
+</div>
+{% endblock %}

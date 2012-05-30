@@ -1,0 +1,12 @@
+{% extends 'AcmeRentacarBundle::base.html.twig' %}
+
+{% block page_title '車種一覧' %}
+{% set menu = 'car_class' %}
+
+{% block content %}
+<div class="car-class-container">
+  {% for carClass in carClasses %}
+    {% include 'AcmeRentacarBundle::_car.html.twig' %}
+  {% endfor %}
+</div>
+{% endblock %}

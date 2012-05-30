@@ -1,0 +1,123 @@
+html, body {
+  background-color: #eee;
+}
+body {
+  padding-top: 40px;
+}
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+}
+
+.main-container {
+  > footer {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    p {
+      text-align: center;
+    }
+  }
+}
+
+.navbar-inner {
+  @start-color: rgba(102,82,128,1);
+  @end-color: rgba(88,64,100,1);
+  background-color: #234;
+  background: -webkit-linear-gradient(top, @start-color 0%, @end-color 100%);
+  background:    -moz-linear-gradient(top, @start-color 0%, @end-color 100%);
+  background:     -ms-linear-gradient(top, @start-color 0%, @end-color 100%);
+  background:         linear-gradient(top, @start-color 0%, @end-color 100%);
+  box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+.navbar {
+  a.brand:hover,
+  .nav > li > a:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  .nav {
+    > li {
+      &:before {
+        float: left;
+        margin-top: 6px;
+        padding: 14px 0;
+        content: ' ';
+        border-left: 1px solid #546;
+      }
+    }
+    .active {
+      > a, > a:hover {
+        color: white;
+        text-decoration: none;
+        background-color: rgba(72,50,90,1);
+      }
+    }
+  }
+}
+
+.input-datetime {
+  select, select[size] {
+    width: auto;
+    height: 24px;
+  }
+  div > select {
+    margin-left: 2px;
+    margin-right: 2px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  div[id$=_date], div[id$=_time] {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+.amount-table {
+  font-size: 115%;
+  tr.total-amount-row {
+    td {
+      font-weight: bold;
+      font-size: 120%;
+      line-height: 1.4;
+    }
+  }
+  .amount-col {
+    width: 25%;
+  }
+  td.amount-col {
+    text-align: right;
+  }
+}
+
+.car-class-box {
+  .thumbnail {
+    margin-top: 10px;
+  }
+  .car-specs {
+    margin: 0;
+  }
+  .price-table {
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    th, td {
+      text-align: center;
+      width: 25%;
+    }
+    th {
+      background-color: #f6f6f6;
+    }
+    td {
+      background-color: #fff;
+    }
+  }
+}

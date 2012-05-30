@@ -1,0 +1,16 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title '車種選択' %}
+{% set menu = 'reservation' %}
+
+{% block content %}
+{% for carClass in carClasses %}
+  {% include "AcmeRentacarBundle:Reservation:_car.html.twig" %}
+{% endfor %}
+
+<div class="form-stacked">
+  <div class="actions">
+    <a href="{{ path('reservation_new') }}" class="btn">&laquo; 戻る</a>
+  </div>
+</div>
+{% endblock %}

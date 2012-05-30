@@ -1,0 +1,16 @@
+{% extends "AcmeRentacarBundle::_car.html.twig" %}
+
+{% block after_content %}
+<div class="row">
+  <div class="offset2 span7">
+    <hr>
+    <form action="{{ path('reservation_car') }}" method="post">
+      <div class="form-ations">
+        <input type="hidden" name="reservation_car[carClass]" value="{{ carClass.id }}">
+        <input type="hidden" name="reservation_car[_token]" value="{{ form._token.get('value') }}">
+        <button class="btn btn-primary">この車種を選択する</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

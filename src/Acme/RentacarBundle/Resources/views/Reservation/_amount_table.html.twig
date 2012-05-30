@@ -1,0 +1,22 @@
+<table class="amount-table table table-bordered">
+  <thead>
+    <tr>
+      <th>品目</th>
+      <th class="amount-col">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="car-subtotal-row">
+      <td>{{ reservation.carClass }}クラス</td>
+      <td class="amount-col">&yen; {{ reservation.carSubtotal|number_format }}</td>
+    </tr>
+    <tr class="option-subtotal-row">
+      <td>オプション</td>
+      <td class="amount-col">&yen; {{ reservation.optionSubtotal|number_format }}</td>
+    </tr>
+    <tr class="total-amount-row">
+      <td>合計金額</td>
+      <td class="amount-col">&yen; {{ reservation.totalAmount|number_format }}</td>
+    </tr>
+  </tbody>
+</table>

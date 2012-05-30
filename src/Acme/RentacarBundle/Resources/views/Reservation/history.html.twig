@@ -1,0 +1,40 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title '予約履歴' %}
+
+{% block content %}
+{% if reservations|length > 0 %}
+  <table class="reservation-list-table table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>予約日時</th>
+        <th>出発</th>
+        <th>発着</th>
+        <th>車種</th>
+        <th>料金</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reservation in reservations %}
+        <tr>
+          <td>{{ reservation.createdAt|date('Y/m/d H:i') }}</td>
+          <td>
+            {{ reservation.departureLocation }}<br>
+            {{ reservation.departureAt|date('Y/m/d H:i') }}
+          </td>
+          <td>
+            {{ reservation.returnLocation }}<br>
+            {{ reservation.returnAt|date('Y/m/d H:i') }}
+          </td>
+          <td>{{ reservation.carClass }}クラス</td>
+          <td>&yen; {{ reservation.totalAmount|number_format }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="alert alert-info">
+    予約履歴はありません
+  </div>
+{% endif %}
+{% endblock %}
