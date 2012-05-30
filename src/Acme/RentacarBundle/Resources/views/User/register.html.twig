@@ -1,0 +1,62 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title '会員登録' %}
+{% block nav '' %}
+
+{% block content %}
+<form action="{{ path('user_register') }}" method="post" class="form-horizontal">
+  {{ form_errors(form) }}
+  <div class="control-group {% if form.name.get('errors') %}error{% endif %}">
+    <label class="control-label">名前</label>
+    <div class="controls">
+      {{ form_errors(form.name) }}
+      {{ form_widget(form.name) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.email.get('errors') %}error{% endif %}">
+    <label class="control-label">メールアドレス</label>
+    <div class="controls">
+      {{ form_errors(form.email) }}
+      {{ form_widget(form.email.first) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.email.get('errors') %}error{% endif %}">
+    <label class="control-label">メールを再入力</label>
+    <div class="controls">
+      {{ form_widget(form.email.second) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.rawPassword.get('errors') %}error{% endif %}">
+    <label class="control-label">パスワード</label>
+    <div class="controls">
+      {{ form_errors(form.rawPassword) }}
+      {{ form_widget(form.rawPassword) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.tel.get('errors') %}error{% endif %}">
+    <label class="control-label">電話番号</label>
+    <div class="controls">
+      {{ form_errors(form.tel) }}
+      {{ form_widget(form.tel) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.birthday.get('errors') %}error{% endif %}">
+    <label class="control-label">誕生日</label>
+    <div class="controls">
+      {{ form_errors(form.birthday) }}
+      {{ form_widget(form.birthday, {'attr': {'class': 'input-datetime'} }) }}
+    </div>
+  </div>
+  <div class="control-group {% if form.agreement.get('errors') %}error{% endif %}">
+    <label class="control-label">利用規約</label>
+    <div class="controls">
+      {{ form_errors(form.agreement) }}
+      <label class="checkbox">{{ form_widget(form.agreement) }} 利用規約に同意します</label>
+    </div>
+  </div>
+  {{ form_rest(form) }}
+  <div class="form-actions">
+    <button class="btn btn-primary">会員登録</button>
+  </div>
+</form>
+{% endblock %}

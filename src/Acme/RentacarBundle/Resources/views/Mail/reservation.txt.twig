@@ -1,0 +1,27 @@
+{%- autoescape false -%}
+{{ user.name }}さま
+
+PHPレンタカーをご利用いただきありがとうございます。
+下記の内容でご予約を承りました。
+
+■出着情報
+出発
+　{{ reservation.departureAt|date('Y/m/d H:i') }} {{ reservation.departureLocation }}営業所
+返却
+　{{ reservation.returnAt|date('Y/m/d H:i') }} {{ reservation.returnLocation }}営業所
+
+■車種
+{{ reservation.carClass }}クラス
+
+■免責補償
+{% if reservation.useInsurance %}あり{% else %}なし{% endif %}
+
+■備考
+{{ reservation.note }}
+
+■請求金額
+\ {{ reservation.totalAmount|number_format }}
+
+--
+PHPレンタカー
+{%- endautoescape -%}

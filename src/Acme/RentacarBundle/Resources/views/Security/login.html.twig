@@ -1,0 +1,50 @@
+{% extends "AcmeRentacarBundle::base.html.twig" %}
+
+{% block page_title 'ログイン' %}
+{% block nav '' %}
+
+{% block content %}
+{% if app.request.session.hasFlash('success') %}
+  <div class="alert alert-success">
+    {{ app.request.session.getFlash('success') }}
+  </div>
+{% endif %}
+
+{% if app.request.session.has('reservation/location') %}
+  <div class="alert alert-warn">
+    予約を行うには会員登録が必要です。<br>
+    既に会員の方はログインしてください。
+  </div>
+{% endif %}
+
+<div class="row">
+  <div class="span6">
+    <form action="{{ path('login') }}" method="post" class="form-horizontal">
+      {{ form_errors(form) }}
+      <div class="control-group">
+        <label class="control-label">メールアドレス</label>
+        <div class="controls">
+          {{ form_widget(form.email) }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">パスワード</label>
+        <div class="controls">
+          {{ form_widget(form.password) }}
+        </div>
+      </div>
+      {{ form_rest(form) }}
+      <div class="form-actions">
+        <button class="btn btn-primary">ログイン</button>
+      </div>
+    </form>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <h3>新規会員登録</h3>
+      <p>会員でない方は登録を行ってください。</p>
+      <p><a href="{{ path('user_register') }}" class="btn btn-success">会員登録</a></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

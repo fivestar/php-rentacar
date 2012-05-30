@@ -1,0 +1,41 @@
+<div id="car-class-box-{{ carClass.id }}" class="car-class-box well">
+  <h3>{{ carClass.name }}クラス</h3>
+  <div class="row">
+    <div class="span2 thumbnail">
+      <img src="{{ asset(carClass.image) }}" alt="{{ carClass.name }}">
+    </div>
+    <div class="span2">
+      <dl class="car-specs">
+        <dt>車種</dt>
+        <dd>{{ carClass.carTypes }}</dd>
+        <dt>定員</dt>
+        <dd>{{ carClass.seats }}人</dd>
+        <dt>免責補償</dt>
+        <dd>&yen;{{ carClass.insurancePrice|number_format }} / 24h</dd>
+      </dl>
+    </div>
+    <div class="span5">
+      <h4>料金表</h4>
+      <table class="table table-bordered price-table">
+        <thead>
+          <tr>
+            <th>3時間</th>
+            <th>6時間</th>
+            <th>12時間</th>
+            <th>24時間</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&yen;{{ carClass.price3|number_format }}</td>
+            <td>&yen;{{ carClass.price6|number_format }}</td>
+            <td>&yen;{{ carClass.price12|number_format }}</td>
+            <td>&yen;{{ carClass.price24|number_format }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% block after_content %}{% endblock %}
+</div>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('bundles/acmerentacar/bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('bundles/acmerentacar/css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('bundles/acmerentacar/bootstrap/css/bootstrap-responsive.css') }}">
+  {% endblock stylesheets %}
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ asset('bundles/acmerentacar/bootstrap/js/bootstrap.min.js') }}"></script>
+
+  <title>{% block title %}{{ block('page_title') }} - PHPレンタカー{% endblock title %}</title>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="{{ path('homepage') }}">PHPレンタカー</a>
+        <div class="nav-collapse">
+          {% block nav %}
+            {% if menu is not defined %}
+              {% set menu = null %}
+            {% endif %}
+            <ul class="nav">
+              <li class="{% if menu == 'home' %}active{% endif %}">
+                <a href="{{ path('homepage') }}">ホーム</a>
+              </li>
+              <li class="{% if menu == 'reservation' %}active{% endif %}">
+                <a href="{{ path('reservation_new') }}">予約</a>
+              </li>
+              <li class="{% if menu == 'car_class' %}active{% endif %}">
+                <a href="{{ path('car_class') }}">車種一覧</a>
+              </li>
+            </ul>
+            {% if _security.isAuthenticated %}
+              <ul class="nav pull-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user icon-white"></i> {{ _security.user.name }}さん
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('reservation_history') }}">予約履歴</a></li>
+                    <li><a href="{{ path('logout') }}">ログアウト</a></li>
+                  </ul>
+                </li>
+              </ul>
+            {% else %}
+              <ul class="nav pull-right">
+                <li><a href="{{ path('login') }}">ログイン</a></li>
+                <li><a href="{{ path('user_register') }}">会員登録</a></li>
+              </ul>
+            {% endif %}
+          {% endblock nav %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container main-container">
+    <div class="content">
+      {% block header %}
+        <div class="page-header">
+          <h1>
+            {% block page_title %}{% endblock page_title %}
+          </h1>
+        </div>
+      {% endblock header %}
+
+      <div class="row">
+        <div class="span10">
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p class="copyright">&copy; 2012 Katsuhiro Ogawa</p>
+    </footer>
+  </div>
+
+  {% block javascripts %}{% endblock javascripts %}
+</body>
+</html>

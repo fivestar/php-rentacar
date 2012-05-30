@@ -1,0 +1,59 @@
+{% extends "AcmeRentacarBundle:Admin:base.html.twig" %}
+
+{% block page_title '予約詳細' %}
+{% set menu = 'reservation' %}
+
+{% block content %}
+<table class="table table-striped table-bordered">
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <td>{{ reservation.id }}</td>
+    </tr>
+    <tr>
+      <th>予約日時</th>
+      <td>
+        {{ reservation.createdAt|date('Y/m/d H:i') }}
+      </td>
+    </tr>
+    <tr>
+      <th>予約者</th>
+      <td><a href="{{ path('admin_user_show', {'id': reservation.user.id}) }}">{{ reservation.user.name }}</a></td>
+    </tr>
+    <tr>
+      <th>車種</th>
+      <td>{{ reservation.carClass }}クラス</td>
+    </tr>
+    <tr>
+      <th>出発</th>
+      <td>
+        {{ reservation.departureLocation }}<br>
+        {{ reservation.departureAt|date('Y/m/d H:i') }}
+      </td>
+    </tr>
+    <tr>
+      <th>返却</th>
+      <td>
+        {{ reservation.returnLocation }}<br>
+        {{ reservation.returnAt|date('Y/m/d H:i') }}
+      </td>
+    </tr>
+    <tr>
+      <th>オプション</th>
+      <td>
+        {% if reservation.useInsurance %}
+          免責補償<br/>
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <th>備考</th>
+      <td>
+        {{ reservation.note|nl2br }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+{% include "AcmeRentacarBundle:Reservation:_amount_table.html.twig" %}
+{% endblock %}

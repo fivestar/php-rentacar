@@ -1,0 +1,15 @@
+{%- autoescape false -%}
+{{ today|date('Y/m/d') }}の予約一覧
+======================================
+
+{% for reservation in reservations %}
+--------------------------------
+ID  :　{{ reservation.id }}
+出発:　{{ reservation.departureAt|date('Y/m/d H:i') }} {{ reservation.departureLocation }}
+返却:　{{ reservation.returnAt|date('Y/m/d H:i') }} {{ reservation.returnLocation }}
+車種:　{{ reservation.carClass }}クラス
+
+{% else %}
+現在予約はありません
+{% endfor %}
+{%- endautoescape -%}

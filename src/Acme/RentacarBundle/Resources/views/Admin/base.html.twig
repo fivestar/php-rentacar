@@ -1,0 +1,61 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ block('page_title') }} - レンタカー管理画面{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/acmerentacar/bootstrap/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/acmerentacar/css/admin.css') }}">
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/acmerentacar/bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="{{ path('admin_home') }}">PHPレンタカー 管理画面</a>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    {% block sidebar %}
+    <div class="span3">
+      <div class="well sidebar-nav">
+        {% if menu is not defined %}
+          {% set menu = null %}
+        {% endif %}
+        <ul class="nav nav-list">
+          <li class="nav-header">メニュー</li>
+          <li {% if menu == 'home' %}class="active"{% endif %}>
+            <a href="{{ path('admin_home') }}">ホーム</a>
+          </li>
+          <li {% if menu == 'user' %}class="active"{% endif %}>
+            <a href="{{ path('admin_user') }}">ユーザ一覧</a>
+          </li>
+          <li {% if menu == 'reservation' %}class="active"{% endif %}>
+            <a href="{{ path('admin_reservation') }}">予約一覧</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endblock %}
+
+    <div class="span9">
+      <div class="page-header">
+        <h1>{% block page_title '' %}</h1>
+      </div>
+
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+
+  <hr>
+  <footer>
+    <p class="copyright">&copy; 2012 Katsuhiro Ogawa</p>
+  </footer>
+</div>
+{% endblock %}
